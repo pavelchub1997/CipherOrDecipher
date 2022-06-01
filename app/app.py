@@ -1,12 +1,21 @@
-"""
-combo = QComboBox(self)
-combo.addItems(utils)
+from PyQt5.QtWidgets import QComboBox
+from .Base.BaseGUI import BaseGUI
+from .utils.utils import utils
+from .ChoiseOfEncryptionAlgorithm.choise_of_encryption_algorithm import algorithm_selection
 
-combo.move(50, 50)
-self.lbl.move(50, 150)
 
-combo.activated[str].connect(choise_of_encryption_algorithm.py)
+class App(BaseGUI):
+    def __init__(self):
+        super().__init__(title_window="Главное окно программы")
+        self.initUI()
 
-"""
+    def initUI(self):
+        self._algorithm_selection()
+        super().initUI()
 
-# TODO: combobox in initUI for choise encryption algorithms
+    def _algorithm_selection(self):
+        encryption_algorithms = QComboBox(self)
+        encryption_algorithms.addItems(*utils)
+        encryption_algorithms.move(100, 150)
+        self.lbl.move(100, 250)
+        # encryption_algorithms.activated[str].connect(algorithm_selection)
