@@ -1,21 +1,19 @@
-from PyQt5.QtWidgets import QComboBox
-from .Base.BaseGUI import BaseGUI
-from .utils.utils import utils
-from .ChoiseOfEncryptionAlgorithm.choise_of_encryption_algorithm import algorithm_selection
+from PyQt5.QtWidgets import QMainWindow
+from CipherOrDecipher.app.Base.BaseGUI import BaseGUI
+from CipherOrDecipher.app.utils.utils import utils
+from CipherOrDecipher.app.ChoiseOfEncryptionAlgorithm.choise_of_encryption_algorithm import algorithm_selection
 
 
-class App(BaseGUI):
+class App(QMainWindow, BaseGUI):
+    # TODO: replace index algorithm_selection text combobox
     def __init__(self):
-        super().__init__(title_window="Главное окно программы")
-        self.initUI()
-
-    def initUI(self):
-        self._algorithm_selection()
-        super().initUI()
+        super().__init__()
+        self.next_step = True
+        self.title_window = "Главное окно программы"
+        self.setupUi(self)
+        self.encryption_algorithms.addItems(utils)
+        super()._forming_button(self, 'Продолжить', 125, 300).clicked.connect(self._algorithm_selection)
 
     def _algorithm_selection(self):
-        encryption_algorithms = QComboBox(self)
-        encryption_algorithms.addItems(*utils)
-        encryption_algorithms.move(100, 150)
-        self.lbl.move(100, 250)
-        # encryption_algorithms.activated[str].connect(algorithm_selection)
+        find = str(self.encryption_algorithms.currentText())
+        algorithm_selection.get(find).show()
