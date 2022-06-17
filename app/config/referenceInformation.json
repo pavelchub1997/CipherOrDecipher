@@ -1,0 +1,8 @@
+{
+  "CipherADFGVX": "Reference information about ADFGVXCipher",
+  "AtbashMethod": "Reference information about AtbashMethod",
+  "FourSquareCipher": "Reference information about FourSquareCipher",
+  "Scrambling": "Reference information about Scrambling",
+  "SinglePermutationByKey": "Reference information about SinglePermutationByKey",
+  "VigenereCipher": "Reference information about VigenereCipher"
+}

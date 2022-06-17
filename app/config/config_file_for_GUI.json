@@ -1,4 +1,47 @@
 {
+  "app": {
+    "title": "Главное окно программы",
+    "parameters_for_window": {
+      "coord_x": 300,
+      "coord_y": 250
+    },
+    "parameters_label_for_choise_encryption_algorithm": {
+      "title": "Выберите алгоритм шифрования",
+      "coord_x": 25,
+      "coord_y": 25,
+      "weight": 250,
+      "height": 25
+    },
+    "parameters_combobox_for_choise_encryption_algorithm": {
+      "coord_x": 50,
+      "coord_y": 75,
+      "weight": 200,
+      "height": 25
+    },
+    "parameters_button_for_continue_work": {
+      "title": "Продолжить",
+      "coord_x": 100,
+      "coord_y": 150
+    },
+    "parameters_button_for_quit": {
+      "title": "Завершение работы",
+      "coord_x": 75,
+      "coord_y": 200
+    }
+  },
+  "reference": {
+    "title": "Главное окно программы",
+    "parameters_for_window": {
+      "coord_x": 450,
+      "coord_y": 600
+    },
+    "parameters_textEdit_for_enter_text": {
+      "coord_x": 50,
+      "coord_y": 25,
+      "weight": 355,
+      "height": 550
+    }
+  },
   "CipherADFGVX": {
     "title": "Шифрование методом ADFGVX",
     "parameters_for_window": {
@@ -72,7 +115,7 @@
       "coord_x": 50,
       "coord_y": 100,
       "weight": 355,
-      "height": 300
+      "height": 325
     },
     "parameters_button_for_cipher": {
       "title": "Шифровать",
