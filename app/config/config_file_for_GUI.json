@@ -1,0 +1,302 @@
+{
+  "CipherADFGVX": {
+    "title": "Шифрование методом ADFGVX",
+    "parameters_for_window": {
+      "coord_x": 450,
+      "coord_y": 600
+    },
+    "parameters_button_for_reference": {
+      "title": "Справка",
+      "coord_x": 355,
+      "coord_y": 5
+    },
+    "parameters_lineedit_for_enter_key_cipher": {
+      "coord_x": 50,
+      "coord_y": 75,
+      "weight": 355,
+      "height": 25
+    },
+    "parameters_label_for_enter_text": {
+      "title": "Введите исходный текст",
+      "coord_x": 50,
+      "coord_y": 125,
+      "weight": 355,
+      "height": 25
+    },
+    "parameters_textEdit_for_enter_text": {
+      "coord_x": 50,
+      "coord_y": 150,
+      "weight": 355,
+      "height": 300
+    },
+    "parameters_button_for_cipher": {
+      "title": "Шифровать",
+      "coord_x": 50,
+      "coord_y": 475
+    },
+    "parameters_button_for_decipher": {
+      "title": "Дешифровать",
+      "coord_x": 300,
+      "coord_y": 475
+    },
+    "parameters_button_for_comeback": {
+      "title": "Вернуться",
+      "coord_x": 185,
+      "coord_y": 510
+    },
+    "parameters_button_for_quit": {
+      "title": "Завершение работы",
+      "coord_x": 150,
+      "coord_y": 550
+    }
+  },
+  "MethodAtbash": {
+    "title": "Шифрование методом Атбаш",
+    "parameters_for_window": {
+      "coord_x": 450,
+      "coord_y": 600
+    },
+    "parameters_button_for_reference": {
+      "title": "Справка",
+      "coord_x": 355,
+      "coord_y": 5
+    },
+    "parameters_label_for_enter_text": {
+      "title": "Введите исходный текст",
+      "coord_x": 50,
+      "coord_y": 75,
+      "weight": 355,
+      "height": 25
+    },
+    "parameters_textEdit_for_enter_text": {
+      "coord_x": 50,
+      "coord_y": 100,
+      "weight": 355,
+      "height": 300
+    },
+    "parameters_button_for_cipher": {
+      "title": "Шифровать",
+      "coord_x": 50,
+      "coord_y": 475
+    },
+    "parameters_button_for_decipher": {
+      "title": "Дешифровать",
+      "coord_x": 300,
+      "coord_y": 475
+    },
+    "parameters_button_for_comeback": {
+      "title": "Вернуться",
+      "coord_x": 185,
+      "coord_y": 510
+    },
+    "parameters_button_for_quit": {
+      "title": "Завершение работы",
+      "coord_x": 150,
+      "coord_y": 550
+    }
+  },
+  "FourSquareCipher": {
+    "title": "Шифрование методом четырех квадратов",
+    "parameters_for_window": {
+      "coord_x": 450,
+      "coord_y": 600
+    },
+    "parameters_button_for_reference": {
+      "title": "Справка",
+      "coord_x": 355,
+      "coord_y": 5
+    },
+    "parameters_lineedit_for_enter_key_cipher": {
+      "coord_x": 50,
+      "coord_y": 75,
+      "weight": 355,
+      "height": 25
+    },
+    "parameters_label_for_enter_text": {
+      "title": "Введите исходный текст",
+      "coord_x": 50,
+      "coord_y": 125,
+      "weight": 355,
+      "height": 25
+    },
+    "parameters_textEdit_for_enter_text": {
+      "coord_x": 50,
+      "coord_y": 150,
+      "weight": 355,
+      "height": 300
+    },
+    "parameters_button_for_cipher": {
+      "title": "Шифровать",
+      "coord_x": 50,
+      "coord_y": 475
+    },
+    "parameters_button_for_decipher": {
+      "title": "Дешифровать",
+      "coord_x": 300,
+      "coord_y": 475
+    },
+    "parameters_button_for_comeback": {
+      "title": "Вернуться",
+      "coord_x": 185,
+      "coord_y": 510
+    },
+    "parameters_button_for_quit": {
+      "title": "Завершение работы",
+      "coord_x": 150,
+      "coord_y": 550
+    }
+  },
+  "Scrambling": {
+    "title": "Шифрование методом скремблирования",
+    "parameters_for_window": {
+      "coord_x": 450,
+      "coord_y": 600
+    },
+    "parameters_button_for_reference": {
+      "title": "Справка",
+      "coord_x": 355,
+      "coord_y": 5
+    },
+    "parameters_lineedit_for_enter_key_cipher": {
+      "coord_x": 50,
+      "coord_y": 75,
+      "weight": 355,
+      "height": 25
+    },
+    "parameters_label_for_enter_text": {
+      "title": "Введите исходный текст",
+      "coord_x": 50,
+      "coord_y": 125,
+      "weight": 355,
+      "height": 25
+    },
+    "parameters_textEdit_for_enter_text": {
+      "coord_x": 50,
+      "coord_y": 150,
+      "weight": 355,
+      "height": 300
+    },
+    "parameters_button_for_cipher": {
+      "title": "Шифровать",
+      "coord_x": 50,
+      "coord_y": 475
+    },
+    "parameters_button_for_decipher": {
+      "title": "Дешифровать",
+      "coord_x": 300,
+      "coord_y": 475
+    },
+    "parameters_button_for_comeback": {
+      "title": "Вернуться",
+      "coord_x": 185,
+      "coord_y": 510
+    },
+    "parameters_button_for_quit": {
+      "title": "Завершение работы",
+      "coord_x": 150,
+      "coord_y": 550
+    }
+  },
+  "SinglePermutationByKey": {
+    "title": "Шифрование методом подстановки по ключу",
+    "parameters_for_window": {
+      "coord_x": 450,
+      "coord_y": 600
+    },
+    "parameters_button_for_reference": {
+      "title": "Справка",
+      "coord_x": 355,
+      "coord_y": 5
+    },
+    "parameters_lineedit_for_enter_key_cipher": {
+      "coord_x": 50,
+      "coord_y": 75,
+      "weight": 355,
+      "height": 25
+    },
+    "parameters_label_for_enter_text": {
+      "title": "Введите исходный текст",
+      "coord_x": 50,
+      "coord_y": 125,
+      "weight": 355,
+      "height": 25
+    },
+    "parameters_textEdit_for_enter_text": {
+      "coord_x": 50,
+      "coord_y": 150,
+      "weight": 355,
+      "height": 300
+    },
+    "parameters_button_for_cipher": {
+      "title": "Шифровать",
+      "coord_x": 50,
+      "coord_y": 475
+    },
+    "parameters_button_for_decipher": {
+      "title": "Дешифровать",
+      "coord_x": 300,
+      "coord_y": 475
+    },
+    "parameters_button_for_comeback": {
+      "title": "Вернуться",
+      "coord_x": 185,
+      "coord_y": 510
+    },
+    "parameters_button_for_quit": {
+      "title": "Завершение работы",
+      "coord_x": 150,
+      "coord_y": 550
+    }
+  },
+  "VigenereCipher": {
+    "title": "Шифрование методом Виженера",
+    "parameters_for_window": {
+      "coord_x": 450,
+      "coord_y": 600
+    },
+    "parameters_button_for_reference": {
+      "title": "Справка",
+      "coord_x": 355,
+      "coord_y": 5
+    },
+    "parameters_lineedit_for_enter_key_cipher": {
+      "coord_x": 50,
+      "coord_y": 75,
+      "weight": 355,
+      "height": 25
+    },
+    "parameters_label_for_enter_text": {
+      "title": "Введите исходный текст",
+      "coord_x": 50,
+      "coord_y": 125,
+      "weight": 355,
+      "height": 25
+    },
+    "parameters_textEdit_for_enter_text": {
+      "coord_x": 50,
+      "coord_y": 150,
+      "weight": 355,
+      "height": 300
+    },
+    "parameters_button_for_cipher": {
+      "title": "Шифровать",
+      "coord_x": 50,
+      "coord_y": 475
+    },
+    "parameters_button_for_decipher": {
+      "title": "Дешифровать",
+      "coord_x": 300,
+      "coord_y": 475
+    },
+    "parameters_button_for_comeback": {
+      "title": "Вернуться",
+      "coord_x": 185,
+      "coord_y": 510
+    },
+    "parameters_button_for_quit": {
+      "title": "Завершение работы",
+      "coord_x": 150,
+      "coord_y": 550
+    }
+  }
+}
