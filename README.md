@@ -19,12 +19,6 @@ encryption and decryption algorithm.
 
 ## Interface
 
-Firstly, the _main menu_ of the program, with the help of which the user is asked whether _to encrypt data or decrypt it_. 
+The _main menu_ of the program, with which the user _**selects the encryption algorithm**_. 
 
-Secondly, an auxiliary window pops up that allows you to select **the encryption** method. 
-
-Thirdly, _for each_ selected encryption method, two windows are implemented: **for encryption**, **for decryption**; as well as _background information_ on the algorithm. 
-
-Fourth, _pop-up_ windows are formed that show the user some restrictions, depending on the specifics of the encryption. 
-
-Finally, a popup window that shows the result of the execution. The result is written to the log file.
+The user has the ability **to encrypt** and **decrypt** data
