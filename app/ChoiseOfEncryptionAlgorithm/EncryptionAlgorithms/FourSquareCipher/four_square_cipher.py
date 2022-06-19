@@ -3,13 +3,14 @@ from CipherOrDecipher.app.Base.BaseGUI import BaseEncryptionAlgorithms
 
 
 class FourSquareCipher(BaseEncryptionAlgorithms, BaseCipherOrDecipher):
-    def __init__(self, key_for_getting_reference, getting_data_from_json):
+    def __init__(self, key_for_getting_reference, getting_data_from_json, alphabet):
         super().__init__(
             choise_of_encryption_algorithm=False,
             key_is_needed=True,
             getting_data_from_config=getting_data_from_json[key_for_getting_reference],
         )
         self.getting_data_from_config_for_reference = getting_data_from_json
+        self.alphabet = alphabet
         self.key_for_getting_reference = key_for_getting_reference
         self.reference.clicked.connect(self._forming_reference)
         self.process_cipher.clicked.connect(self.cipher)

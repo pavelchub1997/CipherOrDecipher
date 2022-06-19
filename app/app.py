@@ -3,9 +3,11 @@ from PyQt5.QtWidgets import QMainWindow
 from CipherOrDecipher.app.Base.BaseGUI import BaseGUI
 from CipherOrDecipher.app.utils.utils import utils
 from CipherOrDecipher.app.ChoiseOfEncryptionAlgorithm.choise_of_encryption_algorithm import algorithm_selection
-from CipherOrDecipher.app.common import get_data_from_json
+from CipherOrDecipher.app.common import get_data_from_json, generate_alphabet
 
-GETTING_DATA_FOR_FORM = get_data_from_json("config_file_for_GUI.json")
+CONFIG = get_data_from_json("config.json")
+GETTING_DATA_FOR_FORM = CONFIG["GUI"]
+ALPHABET = generate_alphabet(CONFIG["alphabet"]["parameters_for_generate_russian_alphabet"])
 
 
 class App(QMainWindow, BaseGUI):
@@ -22,6 +24,8 @@ class App(QMainWindow, BaseGUI):
 
     def _algorithm_selection(self):
         getting_encryption_algorithms_from_gui = str(self.encryption_algorithms.currentText())
-        self.work_with_form = algorithm_selection.get(getting_encryption_algorithms_from_gui)(GETTING_DATA_FOR_FORM)
+        self.work_with_form = algorithm_selection.get(getting_encryption_algorithms_from_gui)(
+            GETTING_DATA_FOR_FORM, ALPHABET
+        )
         self.work_with_form.show()
         self.close()

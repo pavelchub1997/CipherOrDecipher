@@ -15,10 +15,16 @@ from CipherOrDecipher.app.ChoiseOfEncryptionAlgorithm.EncryptionAlgorithms.Vigen
 CONST_APP = QtWidgets.QApplication([])
 
 algorithm_selection = {
-    utils[0]: lambda getting_data_from_json: CipherADFGVX(utils[0], getting_data_from_json),
-    utils[1]: lambda getting_data_from_json: MethodAtbash(utils[1], getting_data_from_json),
-    utils[2]: lambda getting_data_from_json: FourSquareCipher(utils[2], getting_data_from_json),
-    utils[3]: lambda getting_data_from_json: Scrambling(utils[3], getting_data_from_json),
-    utils[4]: lambda getting_data_from_json: SinglePermutationByKey(utils[4], getting_data_from_json),
-    utils[5]: lambda getting_data_from_json: VigenereCipher(utils[5], getting_data_from_json),
+    utils[0]: lambda getting_data_from_json, alphabet:
+    CipherADFGVX(utils[0], getting_data_from_json, alphabet),
+    utils[1]: lambda getting_data_from_json, alphabet:
+    MethodAtbash(utils[1], getting_data_from_json, alphabet),
+    utils[2]: lambda getting_data_from_json, alphabet:
+    FourSquareCipher(utils[2], getting_data_from_json, alphabet),
+    utils[3]: lambda getting_data_from_json, alphabet:
+    Scrambling(utils[3], getting_data_from_json, alphabet),
+    utils[4]: lambda getting_data_from_json, alphabet:
+    SinglePermutationByKey(utils[4], getting_data_from_json, alphabet),
+    utils[5]: lambda getting_data_from_json, alphabet:
+    VigenereCipher(utils[5], getting_data_from_json, alphabet),
 }
