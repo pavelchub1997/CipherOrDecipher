@@ -16,6 +16,11 @@ def get_data_from_json(file_json: str):
     return data
 
 
+def write_data_to_file(name_file: str, data: str):
+    with open(name_file, "w") as result_file:
+        result_file.write(data)
+
+
 def generate_alphabet(config: dict):
     return [chr(index) for index in range(config["start"], config["stop"])] + \
            [letter for letter in string.printable][:-6]
