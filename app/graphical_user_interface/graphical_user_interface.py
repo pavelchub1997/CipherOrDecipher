@@ -3,128 +3,146 @@ import sys
 from PyQt5.QtCore import QMetaObject, QRect, Qt
 from PyQt5.QtWidgets import QWidget, QMainWindow, QPushButton, QDesktopWidget, QComboBox, QTextEdit, QLabel, \
     QLineEdit
+
+from CipherOrDecipher.app.base.base import BaseGraphicalUserInterface
 from CipherOrDecipher.app.common import get_data_from_json
 
 GETTING_INFO_ABOUT_REFERENCE = get_data_from_json("referenceInformation.json")
 
 
-class BaseGUI(object):
+class GraphicalUserInterface(BaseGraphicalUserInterface):
 
-    def setupUi(self, base_gui):
-        self._settings_window(base_gui)
-        self._main_menu(base_gui) if base_gui.choise_of_encryption_algorithm else self._next_step(base_gui)
-        self._forming_button(
-            base_gui,
-            **base_gui.getting_data_from_config["parameters_button_for_quit"]
-        ).clicked.connect(self._forming_quit)
+    def setup_user_interface(self, base_gui):
+        WindowDisplaySettings(base_gui)
         QMetaObject.connectSlotsByName(base_gui)
 
-    def _settings_window(self, base_gui):
-        base_gui.resize(
-            base_gui.getting_data_from_config["parameters_for_window"]["coord_x"],
-            base_gui.getting_data_from_config["parameters_for_window"]["coord_y"]
-        )
-        self._center(base_gui)
-        base_gui.setWindowTitle(base_gui.getting_data_from_config["title"])
 
-    def _center(self, base_gui):
+class WindowDisplaySettings:
+    def __init__(self, obj_cls):
+        self.__title = obj_cls.getting_data_from_config["title"]
+        self.__coord_x = obj_cls.getting_data_from_config["parameters_for_custom_window"]["coord_x"]
+        self.__coord_y = obj_cls.getting_data_from_config["parameters_for_custom_window"]["coord_y"]
+        self.__create_custom_window(obj_cls)
+
+    def __create_custom_window(self, base_gui):
+        base_gui.resize(self.__coord_x, self.__coord_y)
+        self.__center(base_gui)
+        base_gui.setWindowTitle(self.__title)
+
+    def __center(self, base_gui):
         self.geometry_main_window = QWidget.frameGeometry(base_gui)
         self.center_point_desktop = QDesktopWidget().availableGeometry().center()
         self.geometry_main_window.moveCenter(self.center_point_desktop)
         base_gui.move(self.geometry_main_window.topLeft())
 
-    def _main_menu(self, base_gui):
-        self._forming_label(
-            base_gui,
-            **base_gui.getting_data_from_config["parameters_label_for_choise_encryption_algorithm"]
-        )
-        self.encryption_algorithms = QComboBox(base_gui)
-        self.encryption_algorithms.setGeometry(QRect(
-            base_gui.getting_data_from_config["parameters_combobox_for_choise_encryption_algorithm"]["coord_x"],
-            base_gui.getting_data_from_config["parameters_combobox_for_choise_encryption_algorithm"]["coord_y"],
-            base_gui.getting_data_from_config["parameters_combobox_for_choise_encryption_algorithm"]["weight"],
-            base_gui.getting_data_from_config["parameters_combobox_for_choise_encryption_algorithm"]["height"],
-        ))
 
-    def _next_step(self, base_gui):
-        self.reference = self._forming_button(
-            base_gui,
-            **base_gui.getting_data_from_config["parameters_button_for_reference"]
-        )
-        if base_gui.key_is_needed:
-            self._forming_lineedit_for_enter_key_cipher_or_decipher(
-                base_gui,
-                **base_gui.getting_data_from_config["parameters_lineedit_for_enter_key_cipher"]
-            )
-        self._forming_label(
-            base_gui,
-            **base_gui.getting_data_from_config["parameters_label_for_enter_text"]
-        ).setAlignment(Qt.AlignCenter)
-        self.enter_text = self._forming_form_for_enter_text(
-            base_gui,
-            **base_gui.getting_data_from_config["parameters_textEdit_for_enter_text"]
-        )
-        self.process_cipher = self._forming_button(
-            base_gui,
-            **base_gui.getting_data_from_config["parameters_button_for_cipher"]
-        )
-        self.process_decipher = self._forming_button(
-            base_gui,
-            **base_gui.getting_data_from_config["parameters_button_for_decipher"]
-        )
-        self.comeback = self._forming_button(
-            self,
-            **base_gui.getting_data_from_config["parameters_button_for_comeback"]
-        )
+class MainMenu(GraphicalUserInterface):
+    def __init__(self, obj_cls):
+        super().__init__()
+        self.setup_user_interface(obj_cls)
+        Title(obj_cls, obj_cls.getting_data_from_config["parameters_for_icon_position"])
+        EncryptionAlgorithms(obj_cls)
+        obj_cls.continue_button = Button(
+            **obj_cls.getting_data_from_config["parameters_button_for_continue_work"]
+        ).set_button_position(obj_cls)
+        Quit(obj_cls)
 
-    def _forming_label(self, base_gui, title="", coord_x=int(0), coord_y=int(0), weight=int(0), height=int(0)):
-        self.forming_info_about_operation = QLabel(title, base_gui)
-        self.forming_info_about_operation.setGeometry(QRect(coord_x, coord_y, weight, height))
-        return self.forming_info_about_operation
 
-    def _forming_button(self, base_gui, title="", coord_x=int(0), coord_y=int(0)) -> QPushButton:
-        self.forming_button = QPushButton(title, base_gui)
-        self.forming_button.resize(self.forming_button.sizeHint())
-        self.forming_button.move(coord_x, coord_y)
-        return self.forming_button
+class EncryptionAlgorithms:
+    def __init__(self, obj_cls):
+        self.list_dropdown_position: dict = obj_cls.getting_data_from_config["list_dropdown_position"]
+        obj_cls.encryption_algorithms = QComboBox(obj_cls)
+        Dimension(obj_cls.encryption_algorithms, **self.list_dropdown_position)
 
-    def _forming_lineedit_for_enter_key_cipher_or_decipher(
-            self,
-            base_gui,
-            coord_x=int(0),
-            coord_y=int(0),
-            weight=int(0),
-            height=int(0)
-    ):
-        self._forming_label(
-            base_gui,
-            title='Введите ключ шифрования',
-            coord_x=coord_x,
-            coord_y=coord_y - 25,
-            weight=weight,
-            height=height,
-        ).setAlignment(Qt.AlignCenter)
-        self.encryption_key = QLineEdit(base_gui)
-        self.encryption_key.setGeometry(QRect(coord_x, coord_y, weight, height))
-        return self.encryption_key
 
-    def _forming_form_for_enter_text(self, base_gui, coord_x=int(0), coord_y=int(0), weight=int(0), height=int(0)):
-        self.enter_text = QTextEdit(base_gui)
-        self.enter_text.setGeometry(QRect(coord_x, coord_y, weight, height))
-        self.enter_text.setAlignment(Qt.AlignTop)
-        return self.enter_text
+class CipherOrDecipherData(GraphicalUserInterface):
+    def __init__(self, obj_cls):
+        super().__init__()
+        self.setup_user_interface(obj_cls)
+        obj_cls.help_button = Button(
+            **obj_cls.getting_data_from_config["parameters_button_for_reference"]
+        ).set_button_position(obj_cls)
+        EnterData(obj_cls)
+        obj_cls.cipher_button = Button(
+            **obj_cls.getting_data_from_config["parameters_button_for_cipher"]
+        ).set_button_position(obj_cls)
+        obj_cls.decipher_button = Button(
+            **obj_cls.getting_data_from_config["parameters_button_for_decipher"]
+        ).set_button_position(obj_cls)
+        obj_cls.comeback = Button(
+            **obj_cls.getting_data_from_config["parameters_button_for_comeback"]
+        ).set_button_position(obj_cls)
+        Quit(obj_cls)
 
-    def _forming_quit(self):
+
+class EnterData:
+    def __init__(self, obj_cls):
+        self.parameters_lineedit_for_enter_key_cipher = \
+            obj_cls.getting_data_from_config.get("parameters_lineedit_for_enter_key_cipher")
+        if self.parameters_lineedit_for_enter_key_cipher is not None:
+            self.__create_form_for_enter_key(obj_cls)
+        self.__create_form_for_enter_text(obj_cls)
+
+    @staticmethod
+    def __create_form_for_enter_text(obj_cls):
+        Title(obj_cls, obj_cls.getting_data_from_config["parameters_label_for_enter_text"]).set_title_by_center()
+        obj_cls.enter_text = QTextEdit(obj_cls)
+        Dimension(obj_cls.enter_text, **obj_cls.getting_data_from_config["parameters_textEdit_for_enter_text"])
+        obj_cls.enter_text.setAlignment(Qt.AlignTop)
+
+    def __create_form_for_enter_key(self, obj_cls):
+        Title(obj_cls, obj_cls.getting_data_from_config["parameters_label_for_enter_key_cipher"]).set_title_by_center()
+        obj_cls.encryption_key = QLineEdit(obj_cls)
+        Dimension(obj_cls.encryption_key, **self.parameters_lineedit_for_enter_key_cipher)
+
+
+class Quit:
+    def __init__(self, obj_cls):
+        obj_cls.quit = Button(
+            **obj_cls.getting_data_from_config["parameters_button_for_quit"]
+        ).set_button_position(obj_cls).clicked.connect(self.__create_quit)
+
+    @staticmethod
+    def __create_quit():
         sys.exit(0)
 
 
-class BaseEncryptionAlgorithms(QMainWindow, BaseGUI):
-    def __init__(self, getting_data_from_config, choise_of_encryption_algorithm, key_is_needed):
+class Title:
+    def __init__(self, obj_cls, parameters_for_creating_title: dict):
+        self.__title_creating = QLabel(parameters_for_creating_title['title'], obj_cls)
+        Dimension(self.__title_creating, **parameters_for_creating_title)
+
+    def set_title_by_center(self):
+        self.__title_creating.setAlignment(Qt.AlignCenter)
+
+
+class Button:
+    def __init__(self, **parameters_for_creating_button: dict):
+        self.__title = parameters_for_creating_button["title"]
+        self.__coord_x = parameters_for_creating_button["coord_x"]
+        self.__coord_y = parameters_for_creating_button["coord_y"]
+
+    def set_button_position(self, obj_cls):
+        obj_cls.button_creating = QPushButton(self.__title, obj_cls)
+        obj_cls.button_creating.resize(obj_cls.button_creating.sizeHint())
+        obj_cls.button_creating.move(self.__coord_x, self.__coord_y)
+        return obj_cls.button_creating
+
+
+class Dimension:
+    def __init__(self, parameter: QWidget, **parameters_for_size: dict):
+        self.__coord_x = parameters_for_size["coord_x"]
+        self.__coord_y = parameters_for_size["coord_y"]
+        self.__weight = parameters_for_size["weight"]
+        self.__height = parameters_for_size["height"]
+        parameter.setGeometry(QRect(self.__coord_x, self.__coord_y, self.__weight, self.__height))
+
+
+class BaseEncryptionAlgorithms(QMainWindow):
+    def __init__(self, getting_data_from_config):
         super().__init__()
-        self.choise_of_encryption_algorithm = choise_of_encryption_algorithm
-        self.key_is_needed = key_is_needed
         self.getting_data_from_config = getting_data_from_config
-        self.setupUi(self)
+        CipherOrDecipherData(self)
 
     def _forming_reference(self):
         from CipherOrDecipher.app.ChoiseOfEncryptionAlgorithm.EncryptionAlgorithms.ReferenceInformation.Reference \
@@ -138,8 +156,6 @@ class BaseEncryptionAlgorithms(QMainWindow, BaseGUI):
     def _comeback(self):
         from CipherOrDecipher.app.app import App
         self.enter_text.clear()
-        if self.key_is_needed:
-            self.encryption_key.clear()
         self.main_window = App()
         self.main_window.show()
         self.close()

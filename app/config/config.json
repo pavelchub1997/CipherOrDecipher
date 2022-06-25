@@ -2,18 +2,18 @@
   "GUI": {
     "app": {
       "title": "Главное окно программы",
-      "parameters_for_window": {
+      "parameters_for_custom_window": {
         "coord_x": 300,
         "coord_y": 250
       },
-      "parameters_label_for_choise_encryption_algorithm": {
+      "parameters_for_icon_position": {
         "title": "Выберите алгоритм шифрования",
         "coord_x": 25,
         "coord_y": 25,
         "weight": 250,
         "height": 25
       },
-      "parameters_combobox_for_choise_encryption_algorithm": {
+      "list_dropdown_position": {
         "coord_x": 50,
         "coord_y": 75,
         "weight": 200,
@@ -32,20 +32,27 @@
     },
     "reference": {
       "title": "Главное окно программы",
-      "parameters_for_window": {
+      "parameters_for_custom_window": {
         "coord_x": 450,
         "coord_y": 600
       },
-      "parameters_textEdit_for_enter_text": {
+      "parameters_label_for_enter_text": {
+        "title": "Справочная информация",
         "coord_x": 50,
         "coord_y": 25,
+        "weight": 355,
+        "height": 25
+      },
+      "parameters_textEdit_for_enter_text": {
+        "coord_x": 50,
+        "coord_y": 50,
         "weight": 355,
         "height": 550
       }
     },
     "CipherADFGVX": {
       "title": "Шифрование методом ADFGVX",
-      "parameters_for_window": {
+      "parameters_for_custom_window": {
         "coord_x": 450,
         "coord_y": 600
       },
@@ -53,6 +60,13 @@
         "title": "Справка",
         "coord_x": 355,
         "coord_y": 5
+      },
+      "parameters_label_for_enter_key_cipher": {
+        "title": "Введите ключ шифрования",
+        "coord_x": 50,
+        "coord_y": 50,
+        "weight": 355,
+        "height": 25
       },
       "parameters_lineedit_for_enter_key_cipher": {
         "coord_x": 50,
@@ -96,7 +110,7 @@
     },
     "MethodAtbash": {
       "title": "Шифрование методом Атбаш",
-      "parameters_for_window": {
+      "parameters_for_custom_window": {
         "coord_x": 450,
         "coord_y": 600
       },
@@ -141,7 +155,7 @@
     },
     "FourSquareCipher": {
       "title": "Шифрование методом четырех квадратов",
-      "parameters_for_window": {
+      "parameters_for_custom_window": {
         "coord_x": 450,
         "coord_y": 600
       },
@@ -149,6 +163,13 @@
         "title": "Справка",
         "coord_x": 355,
         "coord_y": 5
+      },
+      "parameters_label_for_enter_key_cipher": {
+        "title": "Введите ключ шифрования",
+        "coord_x": 50,
+        "coord_y": 50,
+        "weight": 355,
+        "height": 25
       },
       "parameters_lineedit_for_enter_key_cipher": {
         "coord_x": 50,
@@ -192,7 +213,7 @@
     },
     "Scrambling": {
       "title": "Шифрование методом скремблирования",
-      "parameters_for_window": {
+      "parameters_for_custom_window": {
         "coord_x": 450,
         "coord_y": 600
       },
@@ -200,6 +221,13 @@
         "title": "Справка",
         "coord_x": 355,
         "coord_y": 5
+      },
+      "parameters_label_for_enter_key_cipher": {
+        "title": "Введите ключ шифрования",
+        "coord_x": 50,
+        "coord_y": 50,
+        "weight": 355,
+        "height": 25
       },
       "parameters_lineedit_for_enter_key_cipher": {
         "coord_x": 50,
@@ -243,7 +271,7 @@
     },
     "SinglePermutationByKey": {
       "title": "Шифрование методом подстановки по ключу",
-      "parameters_for_window": {
+      "parameters_for_custom_window": {
         "coord_x": 450,
         "coord_y": 600
       },
@@ -251,6 +279,13 @@
         "title": "Справка",
         "coord_x": 355,
         "coord_y": 5
+      },
+      "parameters_label_for_enter_key_cipher": {
+        "title": "Введите ключ шифрования",
+        "coord_x": 50,
+        "coord_y": 50,
+        "weight": 355,
+        "height": 25
       },
       "parameters_lineedit_for_enter_key_cipher": {
         "coord_x": 50,
@@ -294,7 +329,7 @@
     },
     "VigenereCipher": {
       "title": "Шифрование методом Виженера",
-      "parameters_for_window": {
+      "parameters_for_custom_window": {
         "coord_x": 450,
         "coord_y": 600
       },
@@ -302,6 +337,13 @@
         "title": "Справка",
         "coord_x": 355,
         "coord_y": 5
+      },
+      "parameters_label_for_enter_key_cipher": {
+        "title": "Введите ключ шифрования",
+        "coord_x": 50,
+        "coord_y": 50,
+        "weight": 355,
+        "height": 25
       },
       "parameters_lineedit_for_enter_key_cipher": {
         "coord_x": 50,
