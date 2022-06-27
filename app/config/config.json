@@ -50,6 +50,20 @@
         "height": 550
       }
     },
+    "result_encryption_or_decryption_process": {
+      "title": "Успешное завершение процесса шифрования или дешифрования",
+      "parameters_for_custom_window": {
+        "coord_x": 300,
+        "coord_y": 250
+      },
+      "parameters_for_message": {
+        "title": "Текст успешно \nзашифрован или дешифрован. \nРезультат занесен в файл.",
+        "coord_x": 25,
+        "coord_y": 50,
+        "weight": 250,
+        "height": 150
+      }
+    },
     "CipherADFGVX": {
       "title": "Шифрование методом ADFGVX",
       "parameters_for_custom_window": {

@@ -1,13 +1,9 @@
 import sys
 
 from PyQt5.QtCore import QMetaObject, QRect, Qt
-from PyQt5.QtWidgets import QWidget, QMainWindow, QPushButton, QDesktopWidget, QComboBox, QTextEdit, QLabel, \
-    QLineEdit
+from PyQt5.QtWidgets import QWidget, QPushButton, QDesktopWidget, QComboBox, QTextEdit, QLabel, QLineEdit, QMainWindow
 
 from CipherOrDecipher.app.base.base import BaseGraphicalUserInterface
-from CipherOrDecipher.app.common import get_data_from_json
-
-GETTING_INFO_ABOUT_REFERENCE = get_data_from_json("referenceInformation.json")
 
 
 class GraphicalUserInterface(BaseGraphicalUserInterface):
@@ -48,6 +44,24 @@ class MainMenu(GraphicalUserInterface):
         Quit(obj_cls)
 
 
+class Title:
+    def __init__(self, obj_cls, parameters_for_creating_title: dict):
+        self.__title_creating = QLabel(parameters_for_creating_title['title'], obj_cls)
+        Dimension(self.__title_creating, **parameters_for_creating_title)
+
+    def set_title_by_center(self):
+        self.__title_creating.setAlignment(Qt.AlignCenter)
+
+
+class Dimension:
+    def __init__(self, parameter: QWidget, **parameters_for_size: dict):
+        self.__coord_x = parameters_for_size["coord_x"]
+        self.__coord_y = parameters_for_size["coord_y"]
+        self.__weight = parameters_for_size["weight"]
+        self.__height = parameters_for_size["height"]
+        parameter.setGeometry(QRect(self.__coord_x, self.__coord_y, self.__weight, self.__height))
+
+
 class EncryptionAlgorithms:
     def __init__(self, obj_cls):
         self.list_dropdown_position: dict = obj_cls.getting_data_from_config["list_dropdown_position"]
@@ -55,9 +69,34 @@ class EncryptionAlgorithms:
         Dimension(obj_cls.encryption_algorithms, **self.list_dropdown_position)
 
 
-class CipherOrDecipherData(GraphicalUserInterface):
+class Button:
+    def __init__(self, **parameters_for_creating_button: dict):
+        self.__title = parameters_for_creating_button["title"]
+        self.__coord_x = parameters_for_creating_button["coord_x"]
+        self.__coord_y = parameters_for_creating_button["coord_y"]
+
+    def set_button_position(self, obj_cls):
+        obj_cls.button_creating = QPushButton(self.__title, obj_cls)
+        obj_cls.button_creating.resize(obj_cls.button_creating.sizeHint())
+        obj_cls.button_creating.move(self.__coord_x, self.__coord_y)
+        return obj_cls.button_creating
+
+
+class Quit:
+    def __init__(self, obj_cls):
+        Button(
+            **obj_cls.getting_data_from_config["parameters_button_for_quit"]
+        ).set_button_position(obj_cls).clicked.connect(self.__create_quit)
+
+    @staticmethod
+    def __create_quit():
+        sys.exit(0)
+
+
+class WindowForEncryptionOrDecryptionData(GraphicalUserInterface):
     def __init__(self, obj_cls):
         super().__init__()
+        obj_cls.getting_data_from_config = obj_cls.getting_data_from_config[obj_cls.getting_encryption_algorithms]
         self.setup_user_interface(obj_cls)
         obj_cls.help_button = Button(
             **obj_cls.getting_data_from_config["parameters_button_for_reference"]
@@ -73,6 +112,12 @@ class CipherOrDecipherData(GraphicalUserInterface):
             **obj_cls.getting_data_from_config["parameters_button_for_comeback"]
         ).set_button_position(obj_cls)
         Quit(obj_cls)
+
+
+class ReferenceGUI(GraphicalUserInterface):
+    def __init__(self, obj_cls):
+        self.setup_user_interface(obj_cls)
+        EnterData(obj_cls)
 
 
 class EnterData:
@@ -96,66 +141,12 @@ class EnterData:
         Dimension(obj_cls.encryption_key, **self.parameters_lineedit_for_enter_key_cipher)
 
 
-class Quit:
-    def __init__(self, obj_cls):
-        obj_cls.quit = Button(
-            **obj_cls.getting_data_from_config["parameters_button_for_quit"]
-        ).set_button_position(obj_cls).clicked.connect(self.__create_quit)
-
-    @staticmethod
-    def __create_quit():
-        sys.exit(0)
-
-
-class Title:
-    def __init__(self, obj_cls, parameters_for_creating_title: dict):
-        self.__title_creating = QLabel(parameters_for_creating_title['title'], obj_cls)
-        Dimension(self.__title_creating, **parameters_for_creating_title)
-
-    def set_title_by_center(self):
-        self.__title_creating.setAlignment(Qt.AlignCenter)
-
-
-class Button:
-    def __init__(self, **parameters_for_creating_button: dict):
-        self.__title = parameters_for_creating_button["title"]
-        self.__coord_x = parameters_for_creating_button["coord_x"]
-        self.__coord_y = parameters_for_creating_button["coord_y"]
-
-    def set_button_position(self, obj_cls):
-        obj_cls.button_creating = QPushButton(self.__title, obj_cls)
-        obj_cls.button_creating.resize(obj_cls.button_creating.sizeHint())
-        obj_cls.button_creating.move(self.__coord_x, self.__coord_y)
-        return obj_cls.button_creating
-
-
-class Dimension:
-    def __init__(self, parameter: QWidget, **parameters_for_size: dict):
-        self.__coord_x = parameters_for_size["coord_x"]
-        self.__coord_y = parameters_for_size["coord_y"]
-        self.__weight = parameters_for_size["weight"]
-        self.__height = parameters_for_size["height"]
-        parameter.setGeometry(QRect(self.__coord_x, self.__coord_y, self.__weight, self.__height))
-
-
-class BaseEncryptionAlgorithms(QMainWindow):
-    def __init__(self, getting_data_from_config):
+class ResultEncryptionOrDecryptionProcess(QMainWindow, GraphicalUserInterface):
+    def __init__(self, getting_data_from_json):
         super().__init__()
-        self.getting_data_from_config = getting_data_from_config
-        CipherOrDecipherData(self)
-
-    def _forming_reference(self):
-        from CipherOrDecipher.app.ChoiseOfEncryptionAlgorithm.EncryptionAlgorithms.ReferenceInformation.Reference \
-            import Reference
-        self.window_reference = Reference(
-            self.getting_data_from_config_for_reference["reference"],
-            GETTING_INFO_ABOUT_REFERENCE.get(self.key_for_getting_reference)
-        )
-        self.window_reference.show()
-
-    def _comeback(self):
-        from CipherOrDecipher.app.app import App
-        self.enter_text.clear()
-        self.main_window = App()
-        self.main_window.show()
-        self.close()
+        self.getting_data_from_config = getting_data_from_json["result_encryption_or_decryption_process"]
+        self.setup_user_interface(self)
+        Title(
+            self,
+            self.getting_data_from_config["parameters_for_message"]
+        ).set_title_by_center()
